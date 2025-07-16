@@ -1,0 +1,9 @@
+## 1.0.1
+  * GradientRaisedButton
+  * GradientFloatingActionButton
+  * GradientIcon
+  * GradientIconButton
+  * GradientLinearProgressIndicator
+  * GradientCircularProgressIndicator
+  * GradientText
+  * GradientSelectableText
