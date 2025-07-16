@@ -1,7 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart' show CupertinoActivityIndicator;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import 'package:flutter/semantics.dart';
 
 const double _kMinCircularProgressIndicatorSize = 36.0;
 const int _kIndeterminateLinearDuration = 1800;
@@ -55,7 +57,7 @@ abstract class GradientProgressIndicator extends StatefulWidget {
 
   /// The progress indicator's background color.
   ///
-  /// The current theme's [ThemeData.backgroundColor] by default.
+  /// The current theme's ThemeData.backgroundColor by default.
   ///
   /// This property is ignored if used in an adaptive constructor inside an iOS
   /// environment.
@@ -66,7 +68,7 @@ abstract class GradientProgressIndicator extends StatefulWidget {
   /// To specify a constant color use: `AlwaysStoppedAnimation<Color>(color)`.
   ///
   /// If null, the progress indicator is rendered with the current theme's
-  /// [ThemeData.accentColor].
+  /// ThemeData.accentColor.
   ///
   /// This property is ignored if used in an adaptive constructor inside an iOS
   /// environment.
@@ -122,8 +124,14 @@ abstract class GradientProgressIndicator extends StatefulWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(PercentProperty('value', value,
-        showName: false, ifNull: '<indeterminate>'));
+    properties.add(
+      PercentProperty(
+        'value',
+        value,
+        showName: false,
+        ifNull: '<indeterminate>',
+      ),
+    );
   }
 }
 
@@ -167,15 +175,15 @@ class GradientLinearProgressIndicator extends GradientProgressIndicator {
     this.minHeight,
     String? semanticsLabel,
     String? semanticsValue,
-  })  : assert(minHeight == null || minHeight > 0),
-        super(
-          key: key,
-          value: value,
-          backgroundColor: backgroundColor,
-          valueGradient: valueGradient,
-          semanticsLabel: semanticsLabel,
-          semanticsValue: semanticsValue,
-        );
+  }) : assert(minHeight == null || minHeight > 0),
+       super(
+         key: key,
+         value: value,
+         backgroundColor: backgroundColor,
+         valueGradient: valueGradient,
+         semanticsLabel: semanticsLabel,
+         semanticsValue: semanticsValue,
+       );
 
   /// The minimum height of the line used to draw the indicator.
   ///
@@ -217,8 +225,11 @@ class _GradientLinearProgressIndicatorState
     super.dispose();
   }
 
-  Widget _buildIndicator(BuildContext context, double animationValue,
-      TextDirection textDirection) {
+  Widget _buildIndicator(
+    BuildContext context,
+    double animationValue,
+    TextDirection textDirection,
+  ) {
     return widget._buildSemanticsWrapper(
       context: context,
       child: Container(
@@ -356,17 +367,18 @@ class _GradientCircularProgressIndicatorPainter extends CustomPainter {
     required this.offsetValue,
     required this.rotationValue,
     required this.strokeWidth,
-  })  : arcStart = value != null
-            ? _startAngle
-            : _startAngle +
-                tailValue * 3 / 2 * math.pi +
-                rotationValue * math.pi * 2.0 +
-                offsetValue * 0.5 * math.pi,
-        arcSweep = value != null
-            ? value.clamp(0.0, 1.0) * _sweep
-            : math.max(
-                headValue * 3 / 2 * math.pi - tailValue * 3 / 2 * math.pi,
-                _epsilon);
+  }) : arcStart = value != null
+           ? _startAngle
+           : _startAngle +
+                 tailValue * 3 / 2 * math.pi +
+                 rotationValue * math.pi * 2.0 +
+                 offsetValue * 0.5 * math.pi,
+       arcSweep = value != null
+           ? value.clamp(0.0, 1.0) * _sweep
+           : math.max(
+               headValue * 3 / 2 * math.pi - tailValue * 3 / 2 * math.pi,
+               _epsilon,
+             );
 
   final Color? backgroundColor;
   final Gradient valueGradient;
@@ -457,15 +469,15 @@ class GradientCircularProgressIndicator extends GradientProgressIndicator {
     this.strokeWidth = 4.0,
     String? semanticsLabel,
     String? semanticsValue,
-  })  : _indicatorType = _ActivityIndicatorType.material,
-        super(
-          key: key,
-          value: value,
-          backgroundColor: backgroundColor,
-          valueGradient: valueGradient,
-          semanticsLabel: semanticsLabel,
-          semanticsValue: semanticsValue,
-        );
+  }) : _indicatorType = _ActivityIndicatorType.material,
+       super(
+         key: key,
+         value: value,
+         backgroundColor: backgroundColor,
+         valueGradient: valueGradient,
+         semanticsLabel: semanticsLabel,
+         semanticsValue: semanticsValue,
+       );
 
   /// Creates an adaptive progress indicator that is a
   /// [CupertinoActivityIndicator] in iOS and [GradientCircularProgressIndicator] in
@@ -483,15 +495,15 @@ class GradientCircularProgressIndicator extends GradientProgressIndicator {
     this.strokeWidth = 4.0,
     String? semanticsLabel,
     String? semanticsValue,
-  })  : _indicatorType = _ActivityIndicatorType.adaptive,
-        super(
-          key: key,
-          value: value,
-          valueGradient: valueGradient,
-          backgroundColor: backgroundColor,
-          semanticsLabel: semanticsLabel,
-          semanticsValue: semanticsValue,
-        );
+  }) : _indicatorType = _ActivityIndicatorType.adaptive,
+       super(
+         key: key,
+         value: value,
+         valueGradient: valueGradient,
+         backgroundColor: backgroundColor,
+         semanticsLabel: semanticsLabel,
+         semanticsValue: semanticsValue,
+       );
 
   final _ActivityIndicatorType _indicatorType;
 
@@ -514,18 +526,16 @@ class _CircularProgressIndicatorState
 
   static final Animatable<double> _strokeHeadTween = CurveTween(
     curve: const Interval(0.0, 0.5, curve: Curves.fastOutSlowIn),
-  ).chain(CurveTween(
-    curve: const SawTooth(_pathCount),
-  ));
+  ).chain(CurveTween(curve: const SawTooth(_pathCount)));
   static final Animatable<double> _strokeTailTween = CurveTween(
     curve: const Interval(0.5, 1.0, curve: Curves.fastOutSlowIn),
-  ).chain(CurveTween(
+  ).chain(CurveTween(curve: const SawTooth(_pathCount)));
+  static final Animatable<double> _offsetTween = CurveTween(
     curve: const SawTooth(_pathCount),
-  ));
-  static final Animatable<double> _offsetTween =
-      CurveTween(curve: const SawTooth(_pathCount));
-  static final Animatable<double> _rotationTween =
-      CurveTween(curve: const SawTooth(_rotationCount));
+  );
+  static final Animatable<double> _rotationTween = CurveTween(
+    curve: const SawTooth(_rotationCount),
+  );
 
   late AnimationController _controller;
 
@@ -558,8 +568,13 @@ class _CircularProgressIndicatorState
     return CupertinoActivityIndicator(key: widget.key);
   }
 
-  Widget _buildMaterialIndicator(BuildContext context, double headValue,
-      double tailValue, double offsetValue, double rotationValue) {
+  Widget _buildMaterialIndicator(
+    BuildContext context,
+    double headValue,
+    double tailValue,
+    double offsetValue,
+    double rotationValue,
+  ) {
     return widget._buildSemanticsWrapper(
       context: context,
       child: Container(

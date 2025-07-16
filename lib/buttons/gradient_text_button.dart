@@ -20,27 +20,31 @@ class GradientTextButton extends TextButton {
     required Widget child,
     EdgeInsetsGeometry padding = const EdgeInsets.all(8),
   }) : super(
-          key: key,
-          onPressed: onPressed,
-          onLongPress: onLongPress,
-          style: style ??
-              ButtonStyle(
-                  overlayColor: ButtonStyleButton.allOrNull(splashColor ??
-                      gradient.colors.elementAt(0).withOpacity(0.1))),
-          focusNode: focusNode,
-          autofocus: autofocus,
-          clipBehavior: clipBehavior,
-          child: Padding(
-            padding: style?.padding != null ? EdgeInsets.zero : padding,
-            child: ShaderMask(
-              shaderCallback: (Rect bounds) => gradient.createShader(
-                Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-              ),
-              blendMode: BlendMode.srcIn,
-              child: child,
-            ),
-          ),
-        );
+         key: key,
+         onPressed: onPressed,
+         onLongPress: onLongPress,
+         style:
+             style ??
+             ButtonStyle(
+               overlayColor: ButtonStyleButton.allOrNull(
+                 splashColor ??
+                     gradient.colors.elementAt(0).withValues(alpha: 0.1),
+               ),
+             ),
+         focusNode: focusNode,
+         autofocus: autofocus,
+         clipBehavior: clipBehavior,
+         child: Padding(
+           padding: style?.padding != null ? EdgeInsets.zero : padding,
+           child: ShaderMask(
+             shaderCallback: (Rect bounds) => gradient.createShader(
+               Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+             ),
+             blendMode: BlendMode.srcIn,
+             child: child,
+           ),
+         ),
+       );
 
   /// Create a text button from a pair of widgets that serve as the button's
   /// [icon] and [label].
@@ -77,28 +81,33 @@ class _GradientTextButtonWithIcon extends GradientTextButton {
     required Widget icon,
     required Widget label,
   }) : super(
-          key: key,
-          onPressed: onPressed,
-          gradient: gradient,
-          padding: padding,
-          onLongPress: onLongPress,
-          style: style,
-          focusNode: focusNode,
-          autofocus: autofocus ?? false,
-          clipBehavior: clipBehavior ?? Clip.none,
-          child: _GradientTextButtonWithIconChild(icon: icon, label: label),
-        );
+         key: key,
+         onPressed: onPressed,
+         gradient: gradient,
+         padding: padding,
+         onLongPress: onLongPress,
+         style: style,
+         focusNode: focusNode,
+         autofocus: autofocus ?? false,
+         clipBehavior: clipBehavior ?? Clip.none,
+         child: _GradientTextButtonWithIconChild(icon: icon, label: label),
+       );
 
   @override
   ButtonStyle defaultStyleOf(BuildContext context) {
+    final textScaler = MediaQuery.textScalerOf(context);
+    final scale = textScaler.scale(1.0);
     final EdgeInsetsGeometry scaledPadding = ButtonStyleButton.scaledPadding(
       const EdgeInsets.all(8),
       const EdgeInsets.symmetric(horizontal: 4),
       const EdgeInsets.symmetric(horizontal: 4),
-      MediaQuery.maybeOf(context)?.textScaleFactor ?? 1,
+      scale,
     );
-    return super.defaultStyleOf(context).copyWith(
-        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(scaledPadding));
+    return super
+        .defaultStyleOf(context)
+        .copyWith(
+          padding: WidgetStateProperty.all<EdgeInsetsGeometry>(scaledPadding),
+        );
   }
 }
 
@@ -114,12 +123,18 @@ class _GradientTextButtonWithIconChild extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double scale = MediaQuery.maybeOf(context)?.textScaleFactor ?? 1;
-    final double gap =
-        scale <= 1 ? 8 : lerpDouble(8, 4, math.min(scale - 1, 1))!;
+    final textScaler = MediaQuery.textScalerOf(context);
+    final scale = textScaler.scale(1.0);
+    final double gap = scale <= 1
+        ? 8
+        : lerpDouble(8, 4, math.min(scale - 1, 1))!;
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: <Widget>[icon, SizedBox(width: gap), label],
+      children: <Widget>[
+        icon,
+        SizedBox(width: gap),
+        label,
+      ],
     );
   }
 }
