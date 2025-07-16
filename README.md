@@ -1,7 +1,7 @@
 # 🌈 Gradient UI Plus
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://pub.dev/packages/gradient_ui_plus)
-[![pub](https://img.shields.io/pub/v/fast_cache_network_image)](https://pub.dev/packages/gradient_ui_plus)
+[![pub](https://img.shields.io/pub/v/gradient_ui_plus)](https://pub.dev/packages/gradient_ui_plus)
 [![dart](https://img.shields.io/badge/dart-pure%20dart-success)](https://pub.dev/packages/gradient_ui_plus)
 
 Gradient_ui_plus is a Flutter package that helps you easily add beautifully styled gradient-based UI widgets such as buttons, progress indicators, icon buttons, cards, and more — with minimal effort.
