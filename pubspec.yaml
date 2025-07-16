@@ -5,6 +5,11 @@ homepage: https://github.com/deepak07082/gradient_ui_plus.git
 repository: https://github.com/deepak07082/gradient_ui_plus.git
 issue_tracker: https://github.com/deepak07082/gradient_ui_plus/issues
 
+topics:
+  - gradient
+  - gradient UI
+
+
 environment:
   sdk: ^3.8.0
   flutter: ">=1.17.0"
