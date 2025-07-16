@@ -27,16 +27,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Gradient g1 = LinearGradient(
-    colors: [
-      Color(0xFF7F00FF),
-      Color(0xFFE100FF),
-    ],
-  );
-  Gradient g2 = LinearGradient(colors: [
-    Color(0xfff12711),
-    Color(0xfff5af19),
-  ]);
+  Gradient g1 = LinearGradient(colors: [Color(0xFF7F00FF), Color(0xFFE100FF)]);
+  Gradient g2 = LinearGradient(colors: [Color(0xfff12711), Color(0xfff5af19)]);
   bool val = true;
 
   @override
@@ -51,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Spacer(),
           a.GradientFloatingActionButton.extended(
             onPressed: () {},
-            label: Text("This is a FAB"),
+            label: Text('This is a FAB'),
             icon: Icon(Icons.add),
             shape: StadiumBorder(),
             gradient: g1,
@@ -59,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
           space2,
           a.GradientFloatingActionButton.extended(
             onPressed: () {},
-            label: Text("This is a FAB"),
+            label: Text('This is a FAB'),
             icon: Icon(Icons.add),
             shape: StadiumBorder(),
             gradient: g2,
@@ -78,9 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(),
-                        ],
+                        children: [Container()],
                       ),
                       space2,
                       a.GradientLinearProgressIndicator(
@@ -165,14 +155,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     a.GradientElevatedButton(
                       onPressed: () {},
                       gradient: g1,
-                      child: Text("This is a button"),
+                      child: Text('This is a button'),
                     ),
                     space2,
                     a.GradientElevatedButton.icon(
                       onPressed: () {},
                       gradient: g2,
                       icon: Icon(Icons.add),
-                      label: Text("Also a button"),
+                      label: Text('Also a button'),
                     ),
                     space2,
                   ],
@@ -182,15 +172,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     a.GradientTextButton(
                       onPressed: () {},
                       gradient: g1,
-                      child: Text("This is a text button"),
+                      child: Text('This is a text button'),
                     ),
                     space2,
                     a.GradientTextButton.icon(
                       onPressed: () {},
                       icon: Icon(Icons.ac_unit),
-                      label: Text(
-                        "Snowing",
-                      ),
+                      label: Text('Snowing'),
                       gradient: g2,
                     ),
                   ],
@@ -222,7 +210,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     a.GradientSelectableText(
-                      "THIS IS A SELECTABLE",
+                      'THIS IS A SELECTABLE',
                       gradient: g1,
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -231,7 +219,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     a.GradientSelectableText(
-                      "GRADIENT TEXT",
+                      'GRADIENT TEXT',
                       gradient: g2,
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -249,11 +237,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Column(
                         children: [
                           Text(
-                            "This is a gradient card",
+                            'This is a gradient card',
                             style: TextStyle(color: Colors.white),
                           ),
                           Text(
-                            "It is very cool",
+                            'It is very cool',
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -265,11 +253,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Column(
                         children: [
                           Text(
-                            "This is a gradient card",
+                            'This is a gradient card',
                             style: TextStyle(color: Colors.white),
                           ),
                           Text(
-                            "It is very cool",
+                            'It is very cool',
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -286,16 +274,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 Flexible(
                   child: Column(
                     children: [
-                      a.GradientIcon(
-                        Icons.add_box,
-                        gradient: g1,
-                        size: 70,
-                      ),
-                      a.GradientIcon(
-                        Icons.add_box,
-                        gradient: g2,
-                        size: 70,
-                      ),
+                      a.GradientIcon(Icons.add_box, gradient: g1, size: 70),
+                      a.GradientIcon(Icons.add_box, gradient: g2, size: 70),
                     ],
                   ),
                 ),
@@ -320,16 +300,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 Flexible(
                   child: Column(
                     children: [
-                      a.GradientIcon(
-                        Icons.cloud,
-                        gradient: g1,
-                        size: 70,
-                      ),
-                      a.GradientIcon(
-                        Icons.cloud,
-                        gradient: g2,
-                        size: 70,
-                      ),
+                      a.GradientIcon(Icons.cloud, gradient: g1, size: 70),
+                      a.GradientIcon(Icons.cloud, gradient: g2, size: 70),
                     ],
                   ),
                 ),
