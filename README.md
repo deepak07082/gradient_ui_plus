@@ -8,11 +8,11 @@ Gradient_ui_plus is a Flutter package that helps you easily add beautifully styl
 
 ## 📷 Screenshots
 
-![gif](screenshotsgradient_ui_widgets.gif)
+![gif](https://raw.githubusercontent.com/deepak07082/gradient_ui_plus/main/screenshots/gradient_ui_widgets.gif)
 
-![image](screenshots/outline_input_borders.png)
+![image](https://raw.githubusercontent.com/deepak07082/gradient_ui_plus/main/screenshots/outline_input_borders.png)
 
-![image](screenshots/box_borders.png)
+![image](https://raw.githubusercontent.com/deepak07082/gradient_ui_plus/main/screenshots/box_borders.png)
 
 
 ## ✨ Features
