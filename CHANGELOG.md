@@ -12,3 +12,6 @@
   * GradientBoxBorder
   * GradientOutlineInputBorder
   * LinearGradient
+
+## 1.0.3
+  * Readme.md updated

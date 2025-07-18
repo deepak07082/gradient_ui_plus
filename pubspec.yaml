@@ -1,6 +1,6 @@
 name: gradient_ui_plus
 description: UI widgets with gradient support. Supports many widgets like Elevated/TextButton, FloatingActionButton, Icon, IconButton, Text, SelectableText etc with more to come.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/deepak07082/gradient_ui_plus.git
 repository: https://github.com/deepak07082/gradient_ui_plus.git
 issue_tracker: https://github.com/deepak07082/gradient_ui_plus/issues
