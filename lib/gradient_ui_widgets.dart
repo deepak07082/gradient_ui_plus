@@ -9,3 +9,4 @@ export 'other/gradient_card.dart';
 export 'progress_indicator/gradient_progress_indicator.dart';
 export 'text/gradient_selectable_text.dart';
 export 'text/gradient_text.dart';
+export 'borders/gradient_borders.dart';
