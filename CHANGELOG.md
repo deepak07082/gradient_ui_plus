@@ -7,3 +7,8 @@
   * GradientCircularProgressIndicator
   * GradientText
   * GradientSelectableText
+
+## 1.0.2
+  * GradientBoxBorder
+  * GradientOutlineInputBorder
+  * LinearGradient

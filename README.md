@@ -6,6 +6,15 @@
 
 Gradient_ui_plus is a Flutter package that helps you easily add beautifully styled gradient-based UI widgets such as buttons, progress indicators, icon buttons, cards, and more — with minimal effort.
 
+## 📷 Screenshots
+
+![gif](screenshotsgradient_ui_widgets.gif)
+
+![image](screenshots/outline_input_borders.png)
+
+![image](screenshots/box_borders.png)
+
+
 ## ✨ Features
 
 - gradient_ui_plus is a Flutter package that helps you easily add beautifully styled gradient-based UI widgets such as buttons, progress indicators, icon buttons, cards, and more — with minimal effort.
@@ -135,10 +144,57 @@ GradientIconButton(
 );
 ```
 
-## 📷 Screenshots
+### Box borders:
 
-![gif](./gradient_ui_widgets.gif)
+Change your container borders to use fancy gradients:
+```dart
+Container(
+  width: 100,
+  height: 100,
+  decoration: BoxDecoration(
+    border: const GradientBoxBorder(
+      gradient: LinearGradient(colors: [Colors.blue, Colors.red]),
+      width: 4,
+    ),
+    borderRadius: BorderRadius.circular(16)
+  ),
+),
+```
 
+### Input borders
+You can use `GradientOutlineInputBorder` as a part of your input decoration:
+```dart
+TextField(
+  decoration: InputDecoration(
+    border: GradientOutlineInputBorder(
+      gradient: LinearGradient(colors: [Colors.red, Colors.blue]),
+      width: 2,
+    ),
+    focusedBorder: GradientOutlineInputBorder(
+     gradient: LinearGradient(colors: [Colors.yellow, Colors.green]),
+      width: 2
+    ),
+    label: Text("Example"),
+  ),
+),
+```
+
+### Input Underline borders 
+```dart
+TextField(
+  decoration: InputDecoration(
+    border: GradientOutlineInputBorder(
+      gradient: LinearGradient(colors: [Colors.red, Colors.blue]),
+      width: 2,
+    ),
+    focusedBorder: GradientUnderlineInputBorder(
+     gradient: LinearGradient(colors: [Colors.yellow, Colors.green]),
+      width: 2
+    ),
+    label: Text("Example"),
+  ),
+),
+```
 
 ## 🛠️ Customization
 All gradient widgets accept standard Gradient objects, such as LinearGradient, RadialGradient, etc. You can use your own colors, stops, angles, and more.
